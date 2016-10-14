@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Primitive - A-Frame</title>
+    <meta name="description" content="">
+    <script src="../assets/js/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene fog="type: linear; color: #fff; far: 50; near: 50">
+
+      <a-assets>
+        <img id="texture" src="../assets/images/texture.jpg">
+        <a-mixin
+            id="light" geometry="primitive: sphere; radius: 1.5"
+            material="color: #ff0; shader: flat"
+            light="color: #99c; distance: 100; intensity: 3; type: point"
+        ></a-mixin>
+        <a-mixin id="tree-stem"
+                 geometry="primitive:cylinder; height:10; radius:.5"
+                 material="color:#630"
+        ></a-mixin>
+        <a-mixin id="tree-leaf"
+                 geometry="primitive:cone; height:3; radius-bottom:1.5; radius-top:.2"
+                 material="color:#030"
+                 position="0 5 0"
+        ></a-mixin>
+      </a-assets>
+
+      <a-plane color="#369" opacity=".5" height="100" width="100" rotation="-90 0 0"></a-plane>
+      <a-plane color="#666" opacity=".5" height="100" width="10" position="0 .1 0" rotation="-90 0 0"></a-plane>
+      <a-box
+          width="1" height="1" depth="1"
+          color="#066" opacity=".9" metalness="0"
+          position="1 1 -3" rotation="0 0 0" scale="1 1 1"
+          shader
+      >
+        <a-animation
+            attribute="rotation"
+            dur="5000"
+            easing="linear"
+            repeat="indefinite"
+            to="0 360 0"
+            begin="click"
+        ></a-animation>
+      </a-box>
+      <a-sphere
+          radius="2"
+          position="0 3 -10"
+          color="#660" opacity="1" metalness="0"
+      ></a-sphere>
+      <a-cylinder
+          height="5" radius="3"
+          segments-radial="5"
+          position="0 3 -10" rotation="-90 0 0"
+          color="#333" opacity=".9"
+          side="double"
+          open-ended="true"
+      ></a-cylinder>
+
+      <!--並木：右-->
+      <a-entity position="6 1.5 15">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="6 1.5 10">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="6 1.5 5">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="6 1.5 0">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="6 1.5 -5">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="6 1.5 -10">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="6 1.5 -15">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+
+      <!--並木：左-->
+      <a-entity position="-6 1.5 15">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="-6 1.5 10">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="-6 1.5 5">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="-6 1.5 0">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="-6 1.5 -5">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="-6 1.5 -10">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+      <a-entity position="-6 1.5 -15">
+        <a-entity mixin="tree-stem"></a-entity>
+        <a-entity mixin="tree-leaf"></a-entity>
+      </a-entity>
+
+      <a-box
+          width="7" height="20" depth="10"
+          color="#030" opacity=".9" metalness="0"
+          position="-12 0 0" rotation="0 0 0" scale="1 1 1"
+          shader
+      ></a-box>
+      <a-box
+          width="7" height="20" depth="10"
+          color="#003" opacity=".9" metalness="0"
+          position="12 0 0" rotation="0 0 0" scale="1 1 1"
+          shader
+      ></a-box>
+
+      <!-- light -->
+      <a-entity position="0 0 0">
+        <a-entity mixin="light" position="30 40 0"></a-entity>
+        <a-animation
+            attribute="rotation" to="0 360 0"
+            repeat="indefinite" easing="linear" dur="30000"
+        ></a-animation>
+      </a-entity>
+      <a-light type="ambient" color="#fff"></a-light>
+
+      <!-- background -->
+      <a-sky color="#000"></a-sky>
+      <a-camera position="0 0 0">
+        <a-cursor color="#f00"></a-cursor>
+      </a-camera>
+
+    </a-scene>
+  </body>
+</html>

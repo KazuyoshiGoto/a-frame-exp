@@ -1,0 +1,96 @@
+学習メモ
+
+
+
+【アセット】
+<a-assets>
+CSSのように共通プロパティをセットしておける。
+画像は先読みされる？
+
+
+
+
+【プリミティブ系】
+<a-plane>
+<a-box>
+<a-sphere>
+<a-cylinder>
+など
+
+●plane
+厚みの無い平面。片側しか有効でなく裏から見ると透明になる。
+
+●テクスチャ
+httpでないと表示されない（ローカル確認にはgulpのbrowserSyncTaskなど使う）
+repeatで1つの面に敷き詰める数をX/Yで設定できるが、全ての面に同一に敷き詰められる。
+面のサイズが違う場合は注意。
+
+
+
+
+【sky】
+skyはlightの影響を受けない全天球。
+skyのテクスチャはassetsからの指定ができない。srcで画像パスの指定が必要。
+4096x2048以上がベターか。
+
+
+
+
+【animation】
+「begin="click"」は「a-cursor」で出したカーソルが触れている状態で反応する。
+
+begin:      アニメーションを開始するイベント click,mouseenter,mouseleave
+attribute:  アニメーション対象属性 color,rotation,position,scale
+end:        アニメーションを終了するイベント
+from:       アニメーション開始時の状態
+to:         アニメーション完了時の状態
+dur:        再生秒(ミリ秒)
+delay:      遅延秒（ミリ秒）
+easing:     デフォease
+repeat:     デフォ0 / indefinite
+direction:  reverse(反転),alternate(同一イベントで反転)
+
+トグルするものは direction:alternate を使えばよさげ。
+
+animationを複数記述すれば、同じbeginで複数のアニメーション効果を付けられる。
+
+entityでanimationを指定する際、attributeには「Component Mapping」の値で指定する。
+例：	light.intensity （光の強弱をアニメーションできる）
+
+
+
+
+【カメラ】
+●<a-camera>
+デフォルトの位置は 0 1.8 4
+人の視点のためカメラは1個のみ
+
+●<a-cursor>
+カメラに内包して使うカーソル
+max-distance
+    カーソルの反応する最大距離らしいが死んでる？効果が無い。
+
+
+
+
+【ライト】
+●<a-lignt>
+spot
+  スポットライトを当てる。
+  スポットライトのangleは光の広さ。
+point
+  主光源。指定していないと遠くにデフォで存在する。
+  太陽光のような自然なライティングは遠くに設定する。
+ambient
+  自然光。全オブジェの全ての面に均一に光が射すためpointと組み合わせないと不自然になりやすい。
+
+
+
+
+【entity】
+<a-entity>
+    実際のところ<a-box>などより<a-entity>で組み上げた方が細かい設定ができる。
+    難しくもないが、コードとしての視認性はタグの方が分かりやすくはあるが、慣れ。
+    フレームワークとしてまだ整備がされていないだけとは思う。
+
+
