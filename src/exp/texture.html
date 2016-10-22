@@ -30,52 +30,135 @@
   </a-camera>
 
   <!-- object -->
+
+  <!-- 床 -->
   <a-entity
-      geometry="primitive: plane; width:5; height:7;"
-      material="src:#wood; repeat: 5 7"
-      position="0 0 -4" rotation="-90 0 0"
+      geometry="primitive: plane; width:15; height:15;"
+      material="src:#wood; repeat: 15 15"
+      position="0 0 0" rotation="-90 0 0"
   ></a-entity>
 
-  <a-box src="#stone" position="0 0.5 -2" rotation="0 45 0" width="1" height="1" depth="1"></a-box>
-
-  <a-entity
-      geometry="primitive:sphere; radius:1;"
-      material="src:#sun;"
-      position="4 10 -12"
-      light="color: #ffe; distance: 100; intensity: 2; type: point"
-  ></a-entity>
-
-  <!-- 右壁 -->
-  <a-entity mixin="block" position="3 0.5 -1"></a-entity>
-  <a-entity mixin="block" position="3 0.5 -2"></a-entity>
-  <a-entity mixin="block" position="3 0.5 -3"></a-entity>
+  <!-- 正面-右壁 -->
+  <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="3 2 -3"></a-entity>
   <a-entity mixin="block" position="3 0.5 -4"></a-entity>
-  <a-entity mixin="block" position="3 0.5 -5"></a-entity>
+  <a-entity mixin="block" geometry="height:4" material="repeat:1 4"  position="3 2 -5"></a-entity>
   <a-entity mixin="block" position="3 0.5 -6"></a-entity>
-  <a-entity mixin="block" position="3 0.5 -7"></a-entity>
-  <a-entity mixin="block" position="3 1.5 -1"></a-entity>
-  <a-entity mixin="block" position="3 1.5 -4"></a-entity>
-  <a-entity mixin="block" position="3 1.5 -7"></a-entity>
-
-  <!-- 左壁 -->
-  <a-entity mixin="block" position="-3 0.5 -1"></a-entity>
-  <a-entity mixin="block" position="-3 0.5 -2"></a-entity>
-  <a-entity mixin="block" position="-3 0.5 -3"></a-entity>
+  <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="3 2 -7"></a-entity>
+  <a-entity mixin="block" position="3 1.5 -5"></a-entity>
+  <!-- 正面-左壁 -->
+  <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -3"></a-entity>
   <a-entity mixin="block" position="-3 0.5 -4"></a-entity>
-  <a-entity mixin="block" position="-3 0.5 -5"></a-entity>
+  <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -5"></a-entity>
   <a-entity mixin="block" position="-3 0.5 -6"></a-entity>
-  <a-entity mixin="block" position="-3 0.5 -7"></a-entity>
-  <a-entity mixin="block" position="-3 1.5 -1"></a-entity>
-  <a-entity mixin="block" position="-3 1.5 -4"></a-entity>
-  <a-entity mixin="block" position="-3 1.5 -7"></a-entity>
-
-  <!-- 奥壁 : blockを長方形に引き伸ばし、テクスチャをリピートさせた -->
+  <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -7"></a-entity>
+  <a-entity mixin="block" position="-3 1.5 -3"></a-entity>
+  <a-entity mixin="block" position="-3 1.5 -5"></a-entity>
+  <!-- 奥壁 -->
   <a-entity
-      mixin="block" geometry="width:5;height:2;depth:1;"
-      material="repeat:5 2"
-      position="0 1 -7"
+      mixin="block" geometry="width:5;height:4;depth:1;"
+      material="repeat:5 4"
+      position="0 2 -7"
   ></a-entity>
 
+  <!-- 右 -->
+  <a-entity rotation="0 -90 0">
+    <!-- 右壁 -->
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="3 2 -3"></a-entity>
+    <a-entity mixin="block" position="3 0.5 -4"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4"  position="3 2 -5"></a-entity>
+    <a-entity mixin="block" position="3 0.5 -6"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="3 2 -7"></a-entity>
+    <a-entity mixin="block" position="3 1.5 -5"></a-entity>
+    <!-- 左壁 -->
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -3"></a-entity>
+    <a-entity mixin="block" position="-3 0.5 -4"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -5"></a-entity>
+    <a-entity mixin="block" position="-3 0.5 -6"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -7"></a-entity>
+    <a-entity mixin="block" position="-3 1.5 -3"></a-entity>
+    <a-entity mixin="block" position="-3 1.5 -5"></a-entity>
+    <!-- 奥壁 -->
+    <a-entity
+        mixin="block" geometry="width:5;height:4;depth:1;"
+        material="repeat:5 4"
+        position="0 2 -7"
+    ></a-entity>
+  </a-entity>
+
+  <!-- 後ろ -->
+  <a-entity rotation="0 180 0">
+    <!-- 右壁 -->
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="3 2 -3"></a-entity>
+    <a-entity mixin="block" position="3 0.5 -4"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4"  position="3 2 -5"></a-entity>
+    <a-entity mixin="block" position="3 0.5 -6"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="3 2 -7"></a-entity>
+    <a-entity mixin="block" position="3 1.5 -5"></a-entity>
+    <!-- 左壁 -->
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -3"></a-entity>
+    <a-entity mixin="block" position="-3 0.5 -4"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -5"></a-entity>
+    <a-entity mixin="block" position="-3 0.5 -6"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -7"></a-entity>
+    <a-entity mixin="block" position="-3 1.5 -3"></a-entity>
+    <a-entity mixin="block" position="-3 1.5 -5"></a-entity>
+    <!-- 奥壁 -->
+    <a-entity
+        mixin="block" geometry="width:5;height:4;depth:1;"
+        material="repeat:5 4"
+        position="0 2 -7"
+    ></a-entity>
+  </a-entity>
+
+  <!-- 左 -->
+  <a-entity rotation="0 90 0">
+    <!-- 右壁 -->
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="3 2 -3"></a-entity>
+    <a-entity mixin="block" position="3 0.5 -4"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4"  position="3 2 -5"></a-entity>
+    <a-entity mixin="block" position="3 0.5 -6"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="3 2 -7"></a-entity>
+    <a-entity mixin="block" position="3 1.5 -5"></a-entity>
+    <!-- 左壁 -->
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -3"></a-entity>
+    <a-entity mixin="block" position="-3 0.5 -4"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -5"></a-entity>
+    <a-entity mixin="block" position="-3 0.5 -6"></a-entity>
+    <a-entity mixin="block" geometry="height:4" material="repeat:1 4" position="-3 2 -7"></a-entity>
+    <a-entity mixin="block" position="-3 1.5 -3"></a-entity>
+    <a-entity mixin="block" position="-3 1.5 -5"></a-entity>
+    <!-- 奥壁 -->
+    <a-entity
+        mixin="block" geometry="width:5;height:4;depth:1;"
+        material="repeat:5 4"
+        position="0 2 -7"
+    ></a-entity>
+  </a-entity>
+
+
+  <!-- 屋根 -->
+  <a-entity mixin="block" geometry="width:7;depth:15;" material="repeat:7 15" position="0 4.5 0"></a-entity>
+  <a-entity mixin="block" geometry="width:5;depth:7;" material="repeat:5 7" position="5 4.5 0"></a-entity>
+  <a-entity mixin="block" geometry="width:5;depth:7;" material="repeat:5 7" position="-5 4.5 0"></a-entity>
+
+  <!-- プロジェクタ -->
+  <a-box src="#stone" position="0 0.5 -3" rotation="0 45 0" width=".5" height="1" depth=".5">
+    <a-entity
+    geometry="primitive: box; width:.2; height:.2; depth:.5"
+    material="color: #ccc"
+    position="0 .6 0"
+    rotation="12 -45 0"
+    light="color: #ffc; distance: 10; intensity: 1; type: spot; angle:40; exponent:5;">
+      <a-animation
+      begin="click" attribute="light.intensity"
+      from="1" to="0"
+      dur="500" fill="both"
+      direction="alternate"
+      ></a-animation>
+    </a-entity>
+  </a-box>
+
+  <!-- スクリーン -->
   <a-entity
       geometry="primitive:cylinder; radius:3; openEnded:true; height: 2; thetaLength:90;"
       material="src:#zen; color:#eee; side:double;"
@@ -86,18 +169,11 @@
   <!-- light -->
   <a-light type="ambient" color="#666"></a-light>
   <a-entity
-      geometry="primitive: box; width:.2; height:.2; depth:.5"
-      material="color: #ccc"
-      position="0 1.2 -2"
-      rotation="10 0 0"
-      light="color: #ffc; distance: 10; intensity: 1; type: spot; angle:35; exponent:5;"
-  ><a-animation
-      begin="click" attribute="light.intensity"
-      from="1" to="0"
-      dur="500" fill="both"
-      direction="alternate"
-  ></a-animation>
-  </a-entity>
+      geometry="primitive:sphere; radius:1;"
+      material="src:#sun;"
+      position="4 10 -12"
+      light="color: #ffe; distance: 100; intensity: 1; type: point"
+  ></a-entity>
 
 </a-scene>
 </body>

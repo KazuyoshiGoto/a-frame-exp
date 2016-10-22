@@ -5,7 +5,7 @@ var browserSync = require("browser-sync");
 gulp.task("browserSyncTask", function () {
     browserSync({
         server: {
-            baseDir: "src" // ルートとなるディレクトリを指定
+            baseDir: "./" // ルートとなるディレクトリを指定
         }
     });
 
