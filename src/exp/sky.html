@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Texture - A-Frame</title>
+  <script src="../assets/js/aframe.min.js"></script>
+</head>
+<body>
+
+<!-- シーン -->
+<a-scene>
+
+  <a-assets>
+    <img id="zen" src="../assets/images/zen.jpg">
+    <img id="stone" src="../assets/images/stone.jpg">
+    <img id="wood" src="../assets/images/wood.jpg">
+    <img id="sun" src="../assets/images/sun.jpg">
+    <a-mixin
+        id="block" geometry="primitive:box;"
+        material="src:#stone;"
+    ></a-mixin>
+  </a-assets>
+
+  <!-- background -->
+  <a-sky src="../assets/images/tintamarre.jpg"></a-sky>
+
+  <!-- camera -->
+  <a-camera position="0 0 0">
+  </a-camera>
+
+</a-scene>
+</body>
+</html>
