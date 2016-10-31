@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Game - A-Frame</title>
   <script src="../assets/js/aframe.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 </head>
 <body>
 
@@ -75,6 +76,7 @@
 
 
   <a-entity
+      class="ghost"
       geometry="primitive:sphere; radius:.2;"
       material="color:#f00;opacity:.5;"
       position="0 2 -8"
@@ -90,5 +92,10 @@
 
 
 </a-scene>
+<script>
+  $(".ghost").click(function(){
+    console.log("click!");
+  })
+</script>
 </body>
 </html>

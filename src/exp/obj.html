@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Obj - A-Frame</title>
+  <meta name="description" content="">
+  <script src="../assets/js/aframe.min.js"></script>
+  <style>
+    #moniter {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: rgba(0,0,0,.1);
+    }
+    #moniter textarea {
+      background: transparent;
+      width: 300px;
+      height: 100vh;
+      padding: 10px;
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+      resize: none;
+    }
+  </style>
+</head>
+<body>
+<a-scene>
+
+  <a-assets>
+    <a-asset-item id="city-obj" src="../assets/obj/city/city.obj"></a-asset-item>
+    <a-asset-item id="city-mtl" src="../assets/obj/city/city.mtl"></a-asset-item>
+    <!--
+    obj data : http://tf3dm.com/3d-model/sci-fi-downtown-city-23035.html
+    -->
+  </a-assets>
+
+  <!-- camera -->
+  <a-camera position="0 0 200">
+    <a-animation
+        attribute="position"
+        from="-100 0 0" to="100 100 -200"
+        repeat="indefinite" easing="linear" dur="60000"
+        direction="alternate"
+    ></a-animation>
+  </a-camera>
+
+  <!-- object -->
+  <a-plane width="500" height="500" color="#09c" position="0 -25 0" rotation="-90 0 0"></a-plane>
+  <a-entity obj-model="obj: #city-obj; mtl: #city-mtl" position="0 -25 -100"></a-entity>
+
+</a-scene>
+<div id="moniter"><textarea>
+試しに巨大なobjデータを使ってみたが、ポリゴン欠けまくりのテクスチャ荒れまくりになる。
+</textarea></div>
+</body>
+</html>
