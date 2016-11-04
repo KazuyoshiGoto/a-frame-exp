@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Game - A-Frame</title>
+  <script src="../assets/js/aframe.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+
+<!-- シーン -->
+<a-scene>
+
+  <a-assets>
+    <img id="stone" src="../assets/images/stone.jpg">
+    <img id="wood" src="../assets/images/wood.jpg">
+    <a-mixin
+        id="block" geometry="primitive:box;"
+        material="src:#stone;"
+    ></a-mixin>
+  </a-assets>
+
+  <!-- background -->
+  <a-sky color="#000"></a-sky>
+
+  <!-- camera -->
+  <a-camera>
+    <a-cursor color="#fff"></a-cursor>
+    <a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4.5"></a-light>
+  </a-camera>
+
+  <!-- object -->
+
+  <!-- 床 -->
+  <a-entity
+      geometry="primitive: plane; width:20; height:20;"
+      material="src:#wood; repeat: 20 20"
+      position="0 0 0" rotation="-90 0 0"
+  ></a-entity>
+
+  <!-- 右壁 -->
+  <a-entity mixin="block" geometry="height:4;" material="repeat:1 4" position="3 2 -3"></a-entity>
+  <a-entity mixin="block" geometry="height:4;depth:7" material="repeat:7 4" position="3 2 -7"></a-entity>
+  <a-entity mixin="block" geometry="height:4;width:7" material="repeat:7 4" position="7 2 -3"></a-entity>
+  <!-- 左壁 -->
+  <a-entity mixin="block" geometry="height:4;" material="repeat:1 4" position="-3 2 -3"></a-entity>
+  <a-entity mixin="block" geometry="height:4;depth:7" material="repeat:7 4" position="-3 2 -7"></a-entity>
+  <a-entity mixin="block" geometry="height:4;width:7" material="repeat:7 4" position="-7 2 -3"></a-entity>
+
+  <!-- 背面 -->
+  <a-entity mixin="block" geometry="height:4;width:20" material="repeat:20 4" position="0 2 3"></a-entity>
+
+  <!-- 絵画 -->
+  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="0 2 2.47" rotation="0 180 0">
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art.jpg" position="0 0 0.03"></a-plane>
+  </a-box>
+
+  <!-- 屋根 -->
+  <a-entity mixin="block" geometry="width:7;depth:20;" material="repeat:7 20" position="0 4.5 0"></a-entity>
+  <a-entity mixin="block" geometry="width:7;depth:7;" material="repeat:7 7" position="7 4.5 0"></a-entity>
+  <a-entity mixin="block" geometry="width:7;depth:7;" material="repeat:7 7" position="-7 4.5 0"></a-entity>
+
+
+</a-scene>
+</body>
+</html>

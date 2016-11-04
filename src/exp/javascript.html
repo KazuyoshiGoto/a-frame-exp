@@ -5,7 +5,7 @@
   <title>JavaScript - A-Frame</title>
   <meta name="description" content="">
   <script src="../assets/js/aframe.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <style>
     #moniter {
       position: absolute;
@@ -33,12 +33,20 @@
 
   <!-- camera -->
   <a-camera position="0 0 0">
-    <a-cursor color="#f00" max-distance=".5"></a-cursor>
+    <a-cursor color="#f00" max-distance=".5" id="cursor"></a-cursor>
   </a-camera>
 
   <!-- object -->
   <a-plane color="#ccc" height="5" width="5" position="0 0 -3.5" rotation="-90 0 0"></a-plane>
-  <a-box id="box1" class="box" color="#f90" position="0 .5 -3" rotation="0 45 0"></a-box>
+  <a-box class="box" color="#f90" position="0 .5 -3" rotation="0 45 0"></a-box>
+  <a-sphere class="sphere" color="#999" opacity="1" radius=".5" position="0 2 -3">
+    <a-animation
+        begin="click"
+        attribute="color" from="#f33" to="#999"
+        repeat="0" easing="ease" dur="200"
+        data-life="3"
+    ></a-animation>
+  </a-sphere>
 
 </a-scene>
 <div id="moniter"><textarea>
@@ -56,25 +64,55 @@ attrでposition,rotationを取得すると、x,y,zに値が入った配列で取
 
 
 --------------------------------------------------
-- boxのイベントログ
+イベントログ
 
 </textarea></div>
 <script>
+  //モニターにログ出力
+  function moniter(text) {
+    $('#moniter textarea').html($('#moniter textarea').html() + text);
+  }
+
+  $('.sphere').data('life', 3);
   $('.box').on('click', function() {
-    $('#moniter textarea').html($('#moniter textarea').html() + 'clickでY軸15度回転&#10;');
+    moniter('clickでY軸15度回転&#10;');
     var r = $(this).attr('rotation');
     r['y'] += 15;
-    console.log(r);
     $(this).attr('rotation', r['x']+' '+r['y']+' '+r['z']);
   });
   $('.box').on('mousedown', function() {
-    $('#moniter textarea').html($('#moniter textarea').html() + 'mousedownで色変化&#10;');
+    moniter('mousedownで色変化&#10;');
     $(this).attr('color', '#099');
   });
   $('.box').on('mouseup', function() {
-    $('#moniter textarea').html($('#moniter textarea').html() + 'mouseupで色戻す&#10;');
+    moniter('mouseupで色戻す&#10;');
     $(this).attr('color', '#f90');
   });
+
+  $('.sphere').on('click', function() {
+    var life = $(this).data('life');
+    $(this).data('life', life - 1);
+
+    //球のライフ無くなったら消す
+    if($(this).data('life') <= 0) {
+      opt = 1;
+      sphereHide();
+    }
+    moniter('球体に1ダメージ！ 残ライフ：'+ $(this).data('life') +'&#10;');
+  });
+
+  //球消し。ただremoveするのでなくフェードアウトさせる。
+  function sphereHide() {
+    if(opt > 0) {
+      opt = opt - 0.01;
+      $('.sphere').attr('opacity', opt);
+      setTimeout("sphereHide()", 1);
+    }
+    if(opt <= 0) {
+      $('.sphere').remove();
+    }
+  }
+
 </script>
 </body>
 </html>
