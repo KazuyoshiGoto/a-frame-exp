@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Move - A-Frame</title>
+  <script src="../assets/js/aframe.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+
+<!-- シーン -->
+<a-scene>
+
+  <a-assets>
+    <img id="stone" src="../assets/images/stone.jpg">
+    <img id="wood" src="../assets/images/wood.jpg">
+    <a-mixin
+      id="block" geometry="primitive:box;"
+      material="src:#stone;"
+    ></a-mixin>
+    <a-mixin
+      id="wall" geometry="primitive:box; width:16; height:5; depth:1;"
+      material="src:#stone;repeat:16 5"
+    ></a-mixin>
+    <a-mixin
+      id="arrow" geometry="primitive:cone; radius-bottom:.5; radius-top:0; height:1;"
+      material="color:#ccc;" rotation="180 0 0"
+    ></a-mixin>
+  </a-assets>
+
+  <!-- background -->
+  <a-sky color="#fff"></a-sky>
+
+  <!-- camera -->
+  <a-camera>
+    <a-cursor color="#fff"></a-cursor>
+    <!--<a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4.5"></a-light>
+    <a-light type="spot" color="#fda" position=".4 1 0" rotation="-15 3 0" intensity="1" distance="10" angle="38">
+      <a-animation
+          attribute="position"
+          from=".4 1 0" to=".4 0.8 0"
+          repeat="indefinite" easing="ease" dur="3000"
+          direction="alternate"
+      ></a-animation>
+      <a-animation
+          attribute="intensity"
+          from="1.1" to=".9"
+          repeat="indefinite" dur="5000"
+          direction="alternate"
+      ></a-animation>
+    </a-light>-->
+  </a-camera>
+
+  <!-- object -->
+
+  <!-- 床 -->
+  <a-entity
+      geometry="primitive: plane; width:16; height:16;"
+      material="src:#wood; repeat: 16 16"
+      position="0 0 0" rotation="-90 0 0"
+  ></a-entity>
+
+  <!-- 壁 -->
+  <a-entity mixin="wall" position="0 2.5 -8"></a-entity>
+  <a-entity mixin="wall" position="0 2.5 8"></a-entity>
+  <a-entity mixin="wall" position="-8 2.5 0" rotation="0 90 0"></a-entity>
+  <a-entity mixin="wall" position="8 2.5 0" rotation="0 90 0"></a-entity>
+
+  <!-- 屋根 -->
+  <a-entity mixin="block" geometry="width:16; depth:16;" material="repeat:16 16" position="0 5.5 0"></a-entity>
+
+  <!-- 絵画
+  1 2 3
+  4 5 6
+  -->
+  <!-- 2 -->
+  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="-5 2 -7.4" rotation="0 0 0">
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/1.jpg" position="0 0 0.03"></a-plane>
+  </a-box>
+  <!-- 2 -->
+  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="0 2 -7.4" rotation="0 0 0">
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/2.jpg" position="0 0 0.03"></a-plane>
+  </a-box>
+  <!-- 3 -->
+  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="5 2 -7.4" rotation="0 0 0">
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/3.jpg" position="0 0 0.03"></a-plane>
+  </a-box>
+  <!-- 4 -->
+  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="-5 2 7.4" rotation="0 180 0">
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/4.jpg" position="0 0 0.03"></a-plane>
+  </a-box>
+  <!-- 5 -->
+  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="0 2 7.4" rotation="0 180 0">
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/5.jpg" position="0 0 0.03"></a-plane>
+  </a-box>
+  <!-- 5 -->
+  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="5 2 7.4" rotation="0 180 0">
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/6.jpg" position="0 0 0.03"></a-plane>
+  </a-box>
+
+  <a-entity mixin="arrow" position="0 2 -3"></a-entity>
+
+
+</a-scene>
+<script>
+</script>
+</body>
+</html>

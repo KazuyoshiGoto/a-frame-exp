@@ -32,14 +32,14 @@
   </a-assets>
 
   <!-- camera -->
-  <a-camera position="0 0 0">
+  <a-camera id="camera" position="0 0 0" rotation="0 0 0">
     <a-cursor color="#f00" max-distance=".5" id="cursor"></a-cursor>
   </a-camera>
 
   <!-- object -->
   <a-plane color="#ccc" height="5" width="5" position="0 0 -3.5" rotation="-90 0 0"></a-plane>
-  <a-box class="box" color="#f90" position="0 .5 -3" rotation="0 45 0"></a-box>
-  <a-sphere class="sphere" color="#999" opacity="1" radius=".5" position="0 2 -3">
+  <a-box id="box" class="box" color="#f90" position="0 .5 -3" rotation="0 45 0"></a-box>
+  <a-sphere id="sphere" class="sphere" color="#999" opacity="1" radius=".5" position="0 2 -3">
     <a-animation
         begin="click"
         attribute="color" from="#f33" to="#999"
@@ -70,22 +70,22 @@ attrでposition,rotationを取得すると、x,y,zに値が入った配列で取
 <script>
   //モニターにログ出力
   function moniter(text) {
-    $('#moniter textarea').html($('#moniter textarea').html() + text);
+    $('#moniter textarea').html($('#moniter textarea').html() + text +'&#10;');
   }
 
   $('.sphere').data('life', 3);
   $('.box').on('click', function() {
-    moniter('clickでY軸15度回転&#10;');
+    moniter('clickでY軸15度回転');
     var r = $(this).attr('rotation');
     r['y'] += 15;
     $(this).attr('rotation', r['x']+' '+r['y']+' '+r['z']);
   });
   $('.box').on('mousedown', function() {
-    moniter('mousedownで色変化&#10;');
+    moniter('mousedownで色変化');
     $(this).attr('color', '#099');
   });
   $('.box').on('mouseup', function() {
-    moniter('mouseupで色戻す&#10;');
+    moniter('mouseupで色戻す');
     $(this).attr('color', '#f90');
   });
 
@@ -98,7 +98,7 @@ attrでposition,rotationを取得すると、x,y,zに値が入った配列で取
       opt = 1;
       sphereHide();
     }
-    moniter('球体に1ダメージ！ 残ライフ：'+ $(this).data('life') +'&#10;');
+    moniter('球体に1ダメージ！ 残ライフ：'+ $(this).data('life'));
   });
 
   //球消し。ただremoveするのでなくフェードアウトさせる。
@@ -112,6 +112,29 @@ attrでposition,rotationを取得すると、x,y,zに値が入った配列で取
       $('.sphere').remove();
     }
   }
+
+
+  // A-FrameでのMutationObserverのテスト
+  // プリミティブの属性は拾えるが、カメラの向きと移動は拾えない。
+
+  // 対象ノード
+  const target = document.getElementById('camera');
+  const observer = new MutationObserver((mutations) => {
+    console.log('変わったでよ');
+  });
+  const config = {
+    attributes: true,
+    characterData: true
+  };
+  observer.observe(target , config);
+
+  //値は取れるので、この値を監視すればよい…が、取得できない…
+  $('a-scene').on('click', function() {
+    var cameraRotation = $('#camera').attr('rotation');
+    var cameraPosition = $('#camera').attr('position');
+    console.log(cameraRotation);
+  });
+
 
 </script>
 </body>
