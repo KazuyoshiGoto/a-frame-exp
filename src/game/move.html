@@ -16,15 +16,15 @@
     <img id="wood" src="../assets/images/wood.jpg">
     <a-mixin
       id="block" geometry="primitive:box;"
-      material="src:#stone;"
+      material="src:#stonea; color:#eec;"
     ></a-mixin>
     <a-mixin
       id="wall" geometry="primitive:box; width:16; height:5; depth:1;"
-      material="src:#stone;repeat:16 5"
+      material="src:#stonea; repeat:16 5; color:#ccc;"
     ></a-mixin>
     <a-mixin
-      id="arrow" geometry="primitive:cone; radius-bottom:.5; radius-top:0; height:1;"
-      material="color:#ccc;" rotation="180 0 0"
+      id="cone" geometry="primitive:cone; radius-bottom:.5; radius-top:0; height:.5;"
+      material="color:#f60; opacity:.7; metalness:.1;" rotation="180 0 0"
     ></a-mixin>
   </a-assets>
 
@@ -32,23 +32,23 @@
   <a-sky color="#fff"></a-sky>
 
   <!-- camera -->
-  <a-camera>
+  <a-camera id="camera">
     <a-cursor color="#fff"></a-cursor>
     <!--<a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4.5"></a-light>
-    <a-light type="spot" color="#fda" position=".4 1 0" rotation="-15 3 0" intensity="1" distance="10" angle="38">
-      <a-animation
-          attribute="position"
-          from=".4 1 0" to=".4 0.8 0"
-          repeat="indefinite" easing="ease" dur="3000"
-          direction="alternate"
-      ></a-animation>
-      <a-animation
-          attribute="intensity"
-          from="1.1" to=".9"
-          repeat="indefinite" dur="5000"
-          direction="alternate"
-      ></a-animation>
-    </a-light>-->
+     <a-light type="spot" color="#fda" position=".4 1 0" rotation="-15 3 0" intensity="1" distance="10" angle="38">
+       <a-animation
+           attribute="position"
+           from=".4 1 0" to=".4 0.8 0"
+           repeat="indefinite" easing="ease" dur="3000"
+           direction="alternate"
+       ></a-animation>
+       <a-animation
+           attribute="intensity"
+           from="1.1" to=".9"
+           repeat="indefinite" dur="5000"
+           direction="alternate"
+       ></a-animation>
+     </a-light>-->
   </a-camera>
 
   <!-- object -->
@@ -56,7 +56,7 @@
   <!-- 床 -->
   <a-entity
       geometry="primitive: plane; width:16; height:16;"
-      material="src:#wood; repeat: 16 16"
+      material="src:#wooda; repeat: 16 16; color: #eec;"
       position="0 0 0" rotation="-90 0 0"
   ></a-entity>
 
@@ -75,34 +75,62 @@
   -->
   <!-- 2 -->
   <a-box width="2.2" height="1.7" depth=".03" color="#960" position="-5 2 -7.4" rotation="0 0 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/1.jpg" position="0 0 0.03"></a-plane>
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/1a.jpg" position="0 0 0.03"></a-plane>
   </a-box>
   <!-- 2 -->
   <a-box width="2.2" height="1.7" depth=".03" color="#960" position="0 2 -7.4" rotation="0 0 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/2.jpg" position="0 0 0.03"></a-plane>
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/2a.jpg" position="0 0 0.03"></a-plane>
   </a-box>
   <!-- 3 -->
   <a-box width="2.2" height="1.7" depth=".03" color="#960" position="5 2 -7.4" rotation="0 0 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/3.jpg" position="0 0 0.03"></a-plane>
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/3a.jpg" position="0 0 0.03"></a-plane>
   </a-box>
   <!-- 4 -->
   <a-box width="2.2" height="1.7" depth=".03" color="#960" position="-5 2 7.4" rotation="0 180 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/4.jpg" position="0 0 0.03"></a-plane>
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/4a.jpg" position="0 0 0.03"></a-plane>
   </a-box>
   <!-- 5 -->
   <a-box width="2.2" height="1.7" depth=".03" color="#960" position="0 2 7.4" rotation="0 180 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/5.jpg" position="0 0 0.03"></a-plane>
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/5a.jpg" position="0 0 0.03"></a-plane>
   </a-box>
   <!-- 5 -->
   <a-box width="2.2" height="1.7" depth=".03" color="#960" position="5 2 7.4" rotation="0 180 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/6.jpg" position="0 0 0.03"></a-plane>
+    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/6a.jpg" position="0 0 0.03"></a-plane>
   </a-box>
 
-  <a-entity mixin="arrow" position="0 2 -3"></a-entity>
+  <!--マーカー-->
+  <a-entity mixin="cone" position="-3 2 -5" class="cone">
+    <a-light type="point" color="#ffd" position="0 1 0" intensity=".5" distance="4"></a-light>
+  </a-entity>
+
+  <a-entity mixin="cone" position="3 2 -5" class="cone">
+    <a-light type="point" color="#ffd" position="0 1 0" intensity=".5" distance="4"></a-light>
+  </a-entity>
+
+
+  <a-light type="ambient" color="#888"></a-light>
 
 
 </a-scene>
 <script>
+  $('a-scene').on('click', function() {
+    //console.log($('#camera').attr('position'));
+  });
+
+  $('.cone').on('click', function(){
+    var tpos = $(this).attr('position');
+    var cpos = $('#camera').attr('position');
+
+    //var mspeed = 0.1; //移動スピード
+    //for(cpos['x'] != tpos['x'] && cpos['z'] != tpos['z']) { //cposとtposが等しくなるまでループ
+    //  if(tpos['x'] > 0) {
+    //
+    //  }
+    //});
+
+    var cpos = tpos['x']+' '+cpos['y']+' '+tpos['z']
+    $('#camera').attr('position', cpos);
+  });
 </script>
 </body>
 </html>
