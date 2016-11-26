@@ -19,12 +19,29 @@
       material="src:#stone; color:#eec;"
     ></a-mixin>
     <a-mixin
-      id="wall" geometry="primitive:box; width:16; height:5; depth:1;"
+      id="wall" geometry="primitive:box; width:16; height:4; depth:1;"
       material="src:#stone; repeat:16 5; color:#ccc;"
     ></a-mixin>
+    <!-- picture -->
+    <a-mixin
+      id="pictureframe"
+      geometry="primitive:box; width:2.2; height:1.7; depth:0.03;"
+      material="color:#960"
+    ></a-mixin>
+    <a-mixin
+      id="picture"
+      geometry="primitive:plane; width:2.1; height:1.6"
+      position="0 0 0.03"
+    ></a-mixin>
+    <!-- cone -->
     <a-mixin
       id="cone" geometry="primitive:cone; radius-bottom:.5; radius-top:0; height:.5;"
-      material="color:#f60; opacity:.8; metalness:.1;" rotation="180 0 0"
+      material="color:#f60; opacity:.8; metalness:.5;" rotation="180 0 0"
+    ></a-mixin>
+    <a-mixin
+      id="conelight"
+      light="type:point; color:#ffd; intensity:1; distance:4"
+      position="0 1 0"
     ></a-mixin>
   </a-assets>
 
@@ -34,21 +51,6 @@
   <!-- camera -->
   <a-camera id="camera">
     <a-cursor color="#fff"></a-cursor>
-    <!--<a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4.5"></a-light>
-     <a-light type="spot" color="#fda" position=".4 1 0" rotation="-15 3 0" intensity="1" distance="10" angle="38">
-       <a-animation
-           attribute="position"
-           from=".4 1 0" to=".4 0.8 0"
-           repeat="indefinite" easing="ease" dur="3000"
-           direction="alternate"
-       ></a-animation>
-       <a-animation
-           attribute="intensity"
-           from="1.1" to=".9"
-           repeat="indefinite" dur="5000"
-           direction="alternate"
-       ></a-animation>
-     </a-light>-->
   </a-camera>
 
   <!-- object -->
@@ -61,64 +63,64 @@
   ></a-entity>
 
   <!-- 壁 -->
-  <a-entity mixin="wall" position="0 2.5 -8"></a-entity>
-  <a-entity mixin="wall" position="0 2.5 8"></a-entity>
-  <a-entity mixin="wall" position="-8 2.5 0" rotation="0 90 0"></a-entity>
-  <a-entity mixin="wall" position="8 2.5 0" rotation="0 90 0"></a-entity>
+  <a-entity mixin="wall" position="0 2 -8"></a-entity>
+  <a-entity mixin="wall" position="0 2 8"></a-entity>
+  <a-entity mixin="wall" position="-8 2 0" rotation="0 90 0"></a-entity>
+  <a-entity mixin="wall" position="8 2 0" rotation="0 90 0"></a-entity>
 
   <!-- 屋根 -->
-  <a-entity mixin="block" geometry="width:16; depth:16;" material="repeat:16 16" position="0 5.5 0"></a-entity>
+  <a-entity mixin="block" geometry="width:16; depth:16;" material="repeat:16 16" position="0 4.5 0"></a-entity>
 
   <!-- 絵画
   1 2 3
   4 5 6
   -->
-  <!-- 2 -->
-  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="-5 1.7 -7.4" rotation="0 0 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/1.jpg" position="0 0 0.03"></a-plane>
+  <!-- 1 -->
+  <a-box mixin="pictureframe" position="-5 1.7 -7.4" rotation="0 0 0">
+    <a-plane mixin="picture" src="../assets/images/art/1.jpg"></a-plane>
   </a-box>
   <!-- 2 -->
-  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="0 1.7 -7.4" rotation="0 0 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/2.jpg" position="0 0 0.03"></a-plane>
+  <a-box mixin="pictureframe" position="0 1.7 -7.4" rotation="0 0 0">
+    <a-plane mixin="picture" src="../assets/images/art/2.jpg"></a-plane>
   </a-box>
   <!-- 3 -->
-  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="5 1.7 -7.4" rotation="0 0 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/3.jpg" position="0 0 0.03"></a-plane>
+  <a-box mixin="pictureframe" position="5 1.7 -7.4" rotation="0 0 0">
+    <a-plane mixin="picture" src="../assets/images/art/3.jpg"></a-plane>
   </a-box>
   <!-- 4 -->
-  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="-5 1.7 7.4" rotation="0 180 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/4.jpg" position="0 0 0.03"></a-plane>
+  <a-box mixin="pictureframe" position="-5 1.7 7.4" rotation="0 180 0">
+    <a-plane mixin="picture" src="../assets/images/art/4.jpg"></a-plane>
   </a-box>
   <!-- 5 -->
-  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="0 1.7 7.4" rotation="0 180 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/5.jpg" position="0 0 0.03"></a-plane>
+  <a-box mixin="pictureframe" position="0 1.7 7.4" rotation="0 180 0">
+    <a-plane mixin="picture" src="../assets/images/art/5.jpg"></a-plane>
   </a-box>
-  <!-- 5 -->
-  <a-box width="2.2" height="1.7" depth=".03" color="#960" position="5 1.7 7.4" rotation="0 180 0">
-    <a-plane widtH="2.1" height="1.6" src="../assets/images/art/6.jpg" position="0 0 0.03"></a-plane>
+  <!-- 6 -->
+  <a-box mixin="pictureframe" position="5 1.7 7.4" rotation="0 180 0">
+    <a-plane mixin="picture" src="../assets/images/art/6.jpg"></a-plane>
   </a-box>
 
   <!--マーカー-->
   <a-entity mixin="cone" position="0 2 0" class="cone">
-    <a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4"></a-light>
+    <a-entity mixin="conelight"></a-entity>
   </a-entity>
   <a-entity mixin="cone" position="-5 2 -6" class="cone">
-    <a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4"></a-light>
+    <a-entity mixin="conelight"></a-entity>
   </a-entity>
-  <a-entity mixin="cone" position="0 2 -6" class="cone">
-    <a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4"></a-light>
+  <a-entity mixin="cone" position="0 2 -5.5" class="cone">
+    <a-entity mixin="conelight"></a-entity>
   </a-entity>
   <a-entity mixin="cone" position="5 2 -6" class="cone">
-    <a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4"></a-light>
+    <a-entity mixin="conelight"></a-entity>
   </a-entity>
-  <a-entity mixin="cone" position="-5 2 6" class="cone">
-    <a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4"></a-light>
+  <a-entity mixin="cone" material="color:#0c0" position="-5 2 6" class="cone2">
+    <a-entity mixin="conelight"></a-entity>
   </a-entity>
-  <a-entity mixin="cone" position="0 2 6" class="cone">
-    <a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4"></a-light>
+  <a-entity mixin="cone" material="color:#0c0" position="0 2 5.5" class="cone2">
+    <a-entity mixin="conelight"></a-entity>
   </a-entity>
-  <a-entity mixin="cone" position="5 2 6" class="cone">
-    <a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4"></a-light>
+  <a-entity mixin="cone" material="color:#0c0" position="5 2 6" class="cone2">
+    <a-entity mixin="conelight"></a-entity>
   </a-entity>
 
 
@@ -127,24 +129,50 @@
 
 </a-scene>
 <script>
-  $('a-scene').on('click', function() {
-    //console.log($('#camera').attr('position'));
-  });
 
+  //目的地へカメラ位置を単純に移動する（ワープ）
   $('.cone').on('click', function(){
     var tpos = $(this).attr('position');
     var cpos = $('#camera').attr('position');
-
-    //var mspeed = 0.1; //移動スピード
-    //for(cpos['x'] != tpos['x'] && cpos['z'] != tpos['z']) { //cposとtposが等しくなるまでループ
-    //  if(tpos['x'] > 0) {
-    //
-    //  }
-    //});
-
     var cpos = tpos['x']+' '+cpos['y']+' '+tpos['z']
     $('#camera').attr('position', cpos);
   });
+
+
+  //目的地までカメラ位置をアニメーション移動する（歩く）
+  $('.cone2').on('click', function(){
+    //カメラ移動は<a-camera>に<a-animation>をappendすることで行う
+
+    //カメラの現在地を取得し、from生成
+    var cpos = $('#camera').attr('position');
+    var from = cpos['x'] +' '+ cpos['y'] +' '+ cpos['z'];
+
+    //目的地を取得し、to生成
+    var tpos = $(this).attr('position');
+    var to = tpos['x'] +' '+ cpos['y'] +' '+ tpos['z'];
+
+    //移動速度の設定
+    var mspeed = 300; //1m当たりの移動時間(ms
+    var sx = cpos['x'] - tpos['x']; //X距離
+    if(sx < 0){sx = sx * -1};       //マイナス反転
+    var sz = cpos['z'] - tpos['z']; //Z距離
+    if(sz < 0){sz = sz * -1};       //マイナス反転
+    var dur = (sx + sz) * mspeed;   //移動時間生成
+    console.log('距離:'+ (sx + sz));
+    console.log('移動時間:'+dur);
+
+    $('#camera a-animation').remove();
+    $('#camera').append('<a-animation attribute="position" from="'+ from +'" to="'+ to +'"  easing="linear" dur="'+ dur +'"></a-animation>');
+  });
+
+  function hoge() {
+    console.log("hoge");
+  }
+  //指定小数点桁数で四捨五入
+  function floatFormat( number, n ) {
+    var _pow = Math.pow( 10 , n ) ;
+    return Math.round( number * _pow ) / _pow ;
+  }
 </script>
 </body>
 </html>
