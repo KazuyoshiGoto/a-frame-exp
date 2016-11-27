@@ -14,10 +14,13 @@
   <a-assets>
     <img id="stone" src="../assets/images/stone.jpg">
     <img id="wood" src="../assets/images/wood.jpg">
+    <img id="shadow" src="../assets/images/shadow.png">
     <a-mixin
         id="block" geometry="primitive:box;"
         material="src:#stone;"
     ></a-mixin>
+    <a-asset-item id="zombie-obj" src="../assets/obj/zombie/Grandpa_Zombie.obj"></a-asset-item>
+    <a-asset-item id="zombie-mtl" src="../assets/obj/zombie/Grandpa_Zombie.mtl"></a-asset-item>
   </a-assets>
 
   <!-- background -->
@@ -27,7 +30,7 @@
   <a-camera>
     <a-cursor color="#fff"></a-cursor>
     <a-light type="point" color="#ffd" position="0 1 0" intensity="1" distance="4.5"></a-light>
-    <a-light type="spot" color="#fda" position=".4 1 0" rotation="-15 3 0" intensity="1" distance="10" angle="38">
+    <a-light type="spot" color="#fda" position=".4 1 0" rotation="-15 3 0" intensity="1" distance="8" angle="38">
       <a-animation
           attribute="position"
           from=".4 1 0" to=".4 0.8 0"
@@ -47,22 +50,22 @@
 
   <!-- 床 -->
   <a-entity
-      geometry="primitive: plane; width:20; height:20;"
-      material="src:#wood; repeat: 20 20"
-      position="0 0 0" rotation="-90 0 0"
+      geometry="primitive: plane; width:47; height:27;"
+      material="src:#wood; repeat: 47 27"
+      position="0 0 -10" rotation="-90 0 0"
   ></a-entity>
 
   <!-- 右壁 -->
   <a-entity mixin="block" geometry="height:4;" material="repeat:1 4" position="3 2 -3"></a-entity>
-  <a-entity mixin="block" geometry="height:4;depth:7" material="repeat:7 4" position="3 2 -7"></a-entity>
-  <a-entity mixin="block" geometry="height:4;width:7" material="repeat:7 4" position="7 2 -3"></a-entity>
+  <a-entity mixin="block" geometry="height:4;depth:20" material="repeat:20 4" position="3 2 -13.5"></a-entity>
+  <a-entity mixin="block" geometry="height:4;width:20" material="repeat:20 4" position="13.5 2 -3"></a-entity>
   <!-- 左壁 -->
   <a-entity mixin="block" geometry="height:4;" material="repeat:1 4" position="-3 2 -3"></a-entity>
-  <a-entity mixin="block" geometry="height:4;depth:7" material="repeat:7 4" position="-3 2 -7"></a-entity>
-  <a-entity mixin="block" geometry="height:4;width:7" material="repeat:7 4" position="-7 2 -3"></a-entity>
+  <a-entity mixin="block" geometry="height:4;depth:20" material="repeat:20 4" position="-3 2 -13.5"></a-entity>
+  <a-entity mixin="block" geometry="height:4;width:20" material="repeat:20 4" position="-13.5 2 -3"></a-entity>
 
   <!-- 背面 -->
-  <a-entity mixin="block" geometry="height:4;width:20" material="repeat:20 4" position="0 2 3"></a-entity>
+  <a-entity mixin="block" geometry="height:4;width:47" material="repeat:47 4" position="0 2 3"></a-entity>
 
   <!-- 絵画 -->
   <a-box width="2.2" height="1.7" depth=".03" color="#960" position="0 2 2.47" rotation="0 180 0">
@@ -74,28 +77,69 @@
   <a-entity mixin="block" geometry="width:7;depth:7;" material="repeat:7 7" position="7 4.5 0"></a-entity>
   <a-entity mixin="block" geometry="width:7;depth:7;" material="repeat:7 7" position="-7 4.5 0"></a-entity>
 
-
-  <a-entity
-      class="ghost"
-      geometry="primitive:sphere; radius:.2;"
-      material="color:#f00;opacity:.5;"
-      position="0 2 -8"
-      light="color: #f00; distance: 4; intensity: 1; type: point"
-  >
-    <a-animation
-        attribute="position"
-        from="0 1.5 -10" to="0 1.5 -1"
-        repeat="indefinite" dur="10000"
-        direction="alternate"
-    ></a-animation>
-  </a-entity>
-
+  <!--a-entity id="zombie" class="zombie" obj-model="obj: #zombie-obj; mtl: #zombie-mtl" scale=".027 .027 .027">
+    <a-animation attribute="position" from="0 0 -10" to="0 0 -1" easing="linear" repeat="0" dur="10000"></a-animation>
+  </a-entity-->
 
 </a-scene>
 <script>
-  $(".ghost").click(function(){
-    console.log("click!");
-  })
+  //ゾンビを作る関数。出現位置にランダム性を加える。
+  function makeZombie() {
+    var rand = Math.floor( Math.random() * 3 ) ;
+    if(rand == 0) { //正面
+      var objRotation = '0 0 0';
+      var fromX = Math.floor( Math.random() * 4 ) - 2; //横位置
+      var fromZ = Math.floor( Math.random() * 5 ) - 15; //距離
+    } else if(rand == 1) { //左
+      var objRotation = '0 90 0';
+      var fromX = Math.floor( Math.random() * 5 ) - 15;
+      var fromZ = Math.floor( Math.random() * 4 ) - 2;
+    } else if(rand == 2) { //右
+      var objRotation = '0 -90 0';
+      var fromX = Math.floor( Math.random() * 5 ) + 15;
+      var fromZ = Math.floor( Math.random() * 4 ) - 2;
+    }
+    var aFrom = fromX + ' 0 '+ fromZ;
+    var output = '<a-entity class="zombie" obj-model="obj: #zombie-obj;" scale=".025 .025 .025" rotation="'+ objRotation +'">'+
+      '<a-image src="#shadow" rotation="-90 0 0" scale="80 80 80" position="0 .5 0"></a-image>'+
+      '<a-animation attribute="position" from="'+ aFrom +'" to="0 0 0" easing="linear" repeat="0" dur="10000"></a-animation>'+
+      '</a-entity>';
+    $('a-scene').append(output);
+  }
+  //ロード時にゾンビ3体出す
+  makeZombie();
+  makeZombie();
+  makeZombie();
+  //setTimeout(function(){makeZombie()}, 4000);
+
+  //ゾンビクリックされたら消す
+  $(".zombie").on('click', function() {
+    //$(this).append('<a-animation attribute="opacity" from="1" to="0" easing="ease" repeat="0" dur="300"></a-animation>');
+    $(this).remove();
+    //setTimeout(function() {
+    //  makeZombie();
+    //}, 1000);
+  });
+
+  //課題：setTimeoutで生成したゾンビがクリックできない。謎
+
+
+  //オブザーバー用処理
+  //function checkov() {
+  //  console.log(ovTarget);
+  //}
+  //オブザーバーの監視対象とオプションの設定
+  //var ovTarget = $('.zombie')[0]; //[0]指定でgetElementByIdと同じオブジェクトを取得できる
+  //console.log(ovTarget);
+  //var ovOption = {
+  //  attributes: true //対象ノードの属性の監視を有効にする
+  //}
+  //オブザーバーインスタンスの作成
+  //var observer = new MutationObserver(checkov);
+  //対象と設定を渡す
+  //observer.observe(ovTarget, ovOption);
+
+  //オブザーバーを作ったはいいが、a-animationはdomに変化が無いので実行されない…
 </script>
 </body>
 </html>
